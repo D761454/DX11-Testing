@@ -1,6 +1,11 @@
 #include "Renderer.h"
 
 Renderer::Renderer(Window& window) {
+	createDevice(window);
+	createRenderTarget();
+}
+
+void Renderer::createDevice(Window& window) {
 	// swap chain - like double buffering / back buffer - prevent tearing
 	DXGI_SWAP_CHAIN_DESC swapChainDesc = { 0 };
 	swapChainDesc.BufferCount = 1; // 1 back buffer
@@ -21,4 +26,22 @@ Renderer::Renderer(Window& window) {
 		MessageBox(nullptr, "Problem Creating DX11", "Error", MB_OK);
 		exit(0);
 	}
+}
+
+void Renderer::createRenderTarget() {
+	ID3D11Texture2D* backBuffer;
+	m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**) & backBuffer); // cast to void
+	m_device->CreateRenderTargetView(backBuffer, nullptr, &m_renderTargetView);
+	backBuffer->Release();
+}
+
+void Renderer::beginFrame() {
+	// set bg colour
+	float clearColor[] = { .25f, .5f, 1, 1 };
+	m_deviceContext->ClearRenderTargetView(m_renderTargetView, clearColor);
+}
+
+void Renderer::endFrame() {
+	// swap buffer
+	m_swapChain->Present(1, 0);
 }

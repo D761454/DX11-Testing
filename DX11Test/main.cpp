@@ -18,7 +18,11 @@ int CALLBACK WinMain(HINSTANCE appInstance, HINSTANCE prevInstance, LPSTR cmdLin
 
 		// >>> Main Loop <<<
 		// update
-		// draw etc
+		
+		// draw
+	renderer.beginFrame();
+	// render stuff
+	renderer.endFrame();
 	}
 
 	return 0;
