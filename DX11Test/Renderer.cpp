@@ -11,8 +11,14 @@ Renderer::Renderer(Window& window) {
 	swapChainDesc.Windowed = true;
 
 	// create the swap chain, device and device context
-	D3D11CreateDeviceAndSwapChain(
+	auto result = D3D11CreateDeviceAndSwapChain(
 		nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, 0,
 		nullptr, 0, D3D11_SDK_VERSION,
 		&swapChainDesc, &m_swapChain, &m_device, nullptr, &m_deviceContext);
+
+	// check for errors
+	if (result != S_OK) {
+		MessageBox(nullptr, "Problem Creating DX11", "Error", MB_OK);
+		exit(0);
+	}
 }

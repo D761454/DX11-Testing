@@ -22,7 +22,7 @@ Window::Window(int width, int height) {
 
 	// create window
 	m_handle = CreateWindow("DX11Test", "DX11Test before uni", 
-		WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_VISIBLE, 
+		WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_VISIBLE | WS_MINIMIZEBOX | WS_MAXIMIZEBOX, 
 		100, 100, width, height, 
 		nullptr, nullptr, nullptr, nullptr);
 }
