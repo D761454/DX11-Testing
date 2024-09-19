@@ -13,6 +13,10 @@ int CALLBACK WinMain(HINSTANCE appInstance, HINSTANCE prevInstance, LPSTR cmdLin
 
 			if (msg.message == WM_QUIT) break;
 		}
+
+		// >>> Main Loop <<<
+		// update
+		// draw etc
 	}
 
 	return 0;
