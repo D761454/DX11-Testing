@@ -3,6 +3,12 @@
 
 LRESULT CALLBACK WinProc(HWND handle, UINT msg, WPARAM wparam, LPARAM lparam) {
 
+	if (msg == WM_DESTROY ||
+		msg == WM_CLOSE) {
+		PostQuitMessage(0);
+		return 0;
+	}
+
 	return DefWindowProc(handle, msg, wparam, lparam);
 }
 
