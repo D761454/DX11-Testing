@@ -36,6 +36,13 @@ void Renderer::createRenderTarget() {
 }
 
 void Renderer::beginFrame() {
+	// bind render target
+	m_deviceContext->OMSetRenderTargets(1, &m_renderTargetView, nullptr);
+	
+	// set viewport
+	auto viewport = CD3D11_VIEWPORT(0.f, 0.f, 800.f, 600.f);
+	m_deviceContext->RSSetViewports(1, &viewport);
+
 	// set bg colour
 	float clearColor[] = { .25f, .5f, 1, 1 };
 	m_deviceContext->ClearRenderTargetView(m_renderTargetView, clearColor);
