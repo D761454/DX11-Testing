@@ -34,6 +34,9 @@ void Triangle::draw(Renderer& renderer) {
 	deviceContext->IASetVertexBuffers(0, 1, &m_vertexBuffer, &stride, &offset);
 
 	// draw
+	// if device has no dedicated gpu add
+	deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
 	deviceContext->Draw(3, 0);
 }
 
