@@ -32,6 +32,8 @@ void Renderer::createRenderTarget() {
 	ID3D11Texture2D* backBuffer;
 	m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**) & backBuffer); // cast to void
 	m_device->CreateRenderTargetView(backBuffer, nullptr, &m_renderTargetView);
+
+	backBuffer->GetDesc(&m_backBufferDesc); // get info for window
 	backBuffer->Release();
 }
 
@@ -40,7 +42,7 @@ void Renderer::beginFrame() {
 	m_deviceContext->OMSetRenderTargets(1, &m_renderTargetView, nullptr);
 	
 	// set viewport
-	auto viewport = CD3D11_VIEWPORT(0.f, 0.f, 800.f, 600.f);
+	auto viewport = CD3D11_VIEWPORT(0.f, 0.f, (float)m_backBufferDesc.Width, (float)m_backBufferDesc.Height);
 	m_deviceContext->RSSetViewports(1, &viewport);
 
 	// set bg colour
