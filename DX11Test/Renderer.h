@@ -9,6 +9,8 @@ public:
 	void beginFrame();
 	void endFrame();
 
+	ID3D11Device* getDevice();
+	ID3D11DeviceContext* getDeviceContext();
 private:
 	void createDevice(Window& window);
 	void createRenderTarget();

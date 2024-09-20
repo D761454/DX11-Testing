@@ -45,3 +45,11 @@ void Renderer::endFrame() {
 	// swap buffer
 	m_swapChain->Present(1, 0);
 }
+
+ID3D11Device* Renderer::getDevice() {
+	return m_device;
+}
+
+ID3D11DeviceContext* Renderer::getDeviceContext() {
+	return m_deviceContext;
+}
